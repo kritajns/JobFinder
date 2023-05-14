@@ -6,7 +6,10 @@ import {HomeScreen, SignInScreen, Profile} from '../../screens';
 const AuthStack = createNativeStackNavigator();
 
 const AuthStackScreen = () => (
-  <AuthStack.Navigator>
+  <AuthStack.Navigator
+    screenOptions={{
+      headerShown: false,
+    }}>
     <AuthStack.Screen name="HomeScreen" component={HomeScreen} />
     <AuthStack.Screen name="LoginScreen" component={SignInScreen} />
     <AuthStack.Screen name="Profile" component={Profile} />
