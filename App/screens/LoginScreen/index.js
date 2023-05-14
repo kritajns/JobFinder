@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   SafeAreaView,
+  ScrollView,
   View,
   Text,
   TouchableOpacity,
@@ -18,7 +19,7 @@ const SignInScreen = () => {
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <View style={styles.headerContent}>
           <Text style={styles.header}>UI/UX Design</Text>
           <View style={styles.iconContainer}>
@@ -140,7 +141,7 @@ const SignInScreen = () => {
             </View>
           </View>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
