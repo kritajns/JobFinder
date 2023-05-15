@@ -6,9 +6,12 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
+  FlatList,
+  Image,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AntIcon from 'react-native-vector-icons/AntDesign';
+import useFetch from '../../hook/useFetch';
 
 const SignInScreen = () => {
   const [selectedItem, setSelectedItem] = React.useState(0);
@@ -17,9 +20,35 @@ const SignInScreen = () => {
     setSelectedItem(index);
   };
 
+  const {data, isLoading, error} = useFetch();
+
+  const renderListItem = item => {
+    return (
+      <View style={styles.boxContainer}>
+        <View style={styles.content}>
+          <View style={styles.fbIcon}>
+            <Icon name="facebook-official" size={30} style={styles.fb} />
+          </View>
+          <View style={{marginRight: 40}}>
+            <Text>Facebook</Text>
+            <Text style={{fontSize: 16, fontWeight: '600'}}>
+              Full time UI Designer
+            </Text>
+            <Text style={{marginTop: 10}}>$8k - Tokyo, Japan</Text>
+          </View>
+          <View>
+            <Icon name="heart-o" size={20} style={{color: 'grey'}} />
+            <View style={{marginTop: 15}} />
+            <Text style={{marginTop: 10}}>24h</Text>
+          </View>
+        </View>
+      </View>
+    );
+  };
+
   return (
     <SafeAreaView style={{flex: 1}}>
-      <ScrollView style={styles.container}>
+      <View style={styles.container}>
         <View style={styles.headerContent}>
           <Text style={styles.header}>UI/UX Design</Text>
           <View style={styles.iconContainer}>
@@ -58,7 +87,15 @@ const SignInScreen = () => {
           </TouchableOpacity>
         </View>
 
-        <View style={styles.boxContainer}>
+        <View>
+          <FlatList
+            data={data}
+            renderItem={renderListItem}
+            keyExtractor={item => item?.job_id}
+          />
+        </View>
+
+        {/* <View style={styles.boxContainer}>
           <View style={styles.content}>
             <View style={styles.fbIcon}>
               <Icon name="facebook-official" size={30} style={styles.fb} />
@@ -76,9 +113,9 @@ const SignInScreen = () => {
               <Text style={{marginTop: 10}}>24h</Text>
             </View>
           </View>
-        </View>
+        </View> */}
 
-        <View style={styles.boxContainer}>
+        {/* <View style={styles.boxContainer}>
           <View style={styles.content}>
             <View style={styles.fbIcon}>
               <Icon
@@ -108,9 +145,9 @@ const SignInScreen = () => {
               <Text style={{marginTop: 10}}>6d</Text>
             </View>
           </View>
-        </View>
+        </View> */}
 
-        <View style={styles.boxContainer}>
+        {/* <View style={styles.boxContainer}>
           <View style={styles.content}>
             <View style={styles.fbIcon}>
               <Icon
@@ -140,8 +177,8 @@ const SignInScreen = () => {
               <Text style={{marginTop: 10}}>6d</Text>
             </View>
           </View>
-        </View>
-      </ScrollView>
+        </View> */}
+      </View>
     </SafeAreaView>
   );
 };
