@@ -1,6 +1,7 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, FlatList} from 'react-native';
+import {View, Text, TouchableOpacity, FlatList, StyleSheet} from 'react-native';
 import { SIZES } from '../../../constants';
+import styles from './tabs.style';
 
 const TabButton = ({ name, activeTab, onHandleSearchType }) => (
   <TouchableOpacity style={styles.btn(name, activeTab)} onPress={onHandleSearchType}>
@@ -29,4 +30,4 @@ const Tabs = ({ tabs, activeTab, setActiveTab }) => {
   )
 }
 
-export default Tabs
+export default Tabs;
