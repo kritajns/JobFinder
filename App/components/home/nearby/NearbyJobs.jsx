@@ -9,10 +9,11 @@ import styles from './nearbyjobs.style';
 import {COLORS, SIZES} from '../../../constants';
 import NearbyJobCard from '../../common/cards/nearby/NearbyJobCard';
 import useFetch from '../../../hook/useFetch';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 const NearbyJobs = () => {
-  const Navigation = useNavigation();
+  const navigation = useNavigation();
+  const route = useRoute();
   const {data, isLoading, error} = useFetch
   ('search', {
       query: 'React developer',
@@ -37,7 +38,8 @@ const NearbyJobs = () => {
           data?.map((job) => (
             <NearbyJobCard
               job={job}
-              navigation={Navigation.navigate('JobDetails')}
+              key={`nearby-job-${job?.job_id}`}
+              handleNavigate={() => navigation.navigate('JobDetails', { jobId: job.job_id})}
             />
           ))
         )}
